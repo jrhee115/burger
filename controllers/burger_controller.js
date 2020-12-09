@@ -8,13 +8,13 @@ router.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-router.get("/cats", function(req, res) {
-  cat.all(function(data) {
-    res.json({ cats: data });
+router.get("/burgers", function(req, res) {
+  burger.all(function(data) {
+    res.json({ burger: data });
   });
 });
 
-router.post("/api/burger", function(req, res) {
+router.post("/burger", function(req, res) {
   burger.create([
     "name", "devoured"
   ], [
@@ -25,7 +25,7 @@ router.post("/api/burger", function(req, res) {
   });
 });
 
-router.put("/api/burger/:id", function(req, res) {
+router.put("/burger/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
@@ -42,7 +42,7 @@ router.put("/api/burger/:id", function(req, res) {
   });
 });
 
-router.delete("/api/burger/:id", function(req, res) {
+router.delete("/burger/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   burger.delete(condition, function(result) {

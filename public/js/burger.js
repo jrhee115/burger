@@ -14,16 +14,16 @@ $(function () {
         "<li>" +
         burgers[i].id +
         ". " + burgers[i].name +
-        "<button class='change-devour' data-id='" +
+        "<button class='change-devoured' data-id='" +
         burgers[i].id +
-        "' data-newdevour='" +
+        "' data-newdevoured='" +
         !burgers[i].devoured +
         "'>";
 
       if (burgers[i].devoured) {
         new_elem += "DEVOUR TIME!";
       } else {
-        new_elem += "WAKE UP!";
+        new_elem += "Devour!";
       }
 
       new_elem += "</button>";
@@ -44,10 +44,10 @@ $(function () {
 
   $(document).on("click", ".change-devoured", function (event) {
     var id = $(this).data("id");
-    var newDevour = $(this).data("newsleep");
+    var newDevour = $(this).data("newdevoured");
 
     var newDevouredState = {
-      devoured: newDevour
+      devoured: newDevoured
     };
 
     // Send the PUT request.
@@ -70,7 +70,7 @@ $(function () {
     event.preventDefault();
 
     var newBurger = {
-      name: $("#burg").val().trim(),
+      name: $("#ca").val().trim(),
       devoured: $("[name=devoured]:checked").val().trim()
     };
 
