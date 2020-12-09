@@ -3,13 +3,14 @@ var router = express.Router();
 var burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
+
 router.get("/", function(req, res) {
-  burger.all(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+router.get("/cats", function(req, res) {
+  cat.all(function(data) {
+    res.json({ cats: data });
   });
 });
 
@@ -36,7 +37,7 @@ router.put("/api/burger/:id", function(req, res) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
     } else {
-      res.status(200).end();
+      res.json({ id: req.params.id});
     }
   });
 });
