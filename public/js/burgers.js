@@ -11,7 +11,7 @@ $(function () {
 
     for (var i = 0; i < len; i++) {
       var new_elem =
-        "<li>" +
+        "<li class=>" +
         burgers[i].id +
         ". " + burgers[i].name +
         "<button class='change-devoured' data-id='" +
@@ -44,14 +44,14 @@ $(function () {
 
   $(document).on("click", ".change-devoured", function (event) {
     var id = $(this).data("id");
-    var newDevour = $(this).data("newdevoured");
+    var newDevoured = $(this).data("newdevoured");
 
     var newDevouredState = {
       devoured: newDevoured
     };
 
     // Send the PUT request.
-    $.ajax("/api/burger/" + id, {
+    $.ajax("/burgers/" + id, {
       type: "PUT",
       dataType: "json",
       data: JSON.stringify(newDevouredState),
@@ -75,7 +75,7 @@ $(function () {
     };
 
     // Send the POST request.
-    $.ajax("/api/burgers", {
+    $.ajax("/burgers", {
       type: "POST",
       dataType: "json",
       data: JSON.stringify(newBurger),
@@ -93,7 +93,7 @@ $(function () {
     var id = $(this).data("id");
 
     // Send the DELETE request.
-    $.ajax("/api/burgers/" + id, {
+    $.ajax("/burgers/" + id, {
       type: "DELETE"
     }).then(
       function () {
